@@ -13,3 +13,4 @@ comments for learning are in the files themselves
 - `insertCommonKeys.ts` - Insert a common key with z value type 
 - `applyStringAction.ts` -- Practice with extend conditionals
 - `prettify.ts` -- Prettify types 
+- `stringAutoComplete.ts` -- Atuo complete string intersection
