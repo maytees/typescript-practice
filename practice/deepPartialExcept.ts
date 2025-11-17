@@ -8,7 +8,7 @@ import type { Prettify } from "./prettify";
 // those are the ones in required paths (extends rp ? P : never).
 // Then you recurse over the object (if there's an object), and then
 // you check if the required paths has p as a string, with a tail
-// infer is used to
+// infer is used to take
 type DeepPartialExcept<T, RequiredPaths extends string> = {
 	[P in keyof T as P extends RequiredPaths ? never : P]?: NonNullable<
 		T[P]
@@ -32,3 +32,29 @@ type DeepPartialExcept<T, RequiredPaths extends string> = {
 type PartialPerson = Prettify<
 	DeepPartialExcept<Person, "name" | "address.zip" | "address">
 >;
+
+export type FatherTree = {
+	name: string;
+	dad: FatherTree;
+};
+
+type DeepPartialFatherTree = DeepPartialExcept<
+	FatherTree,
+	"dad.dad.dad.name" | "dad"
+>;
+
+export const deepObject: DeepPartialFatherTree = {
+	name: "Albert",
+	dad: {
+		name: "Albert's Dad", // Optional
+		dad: {
+			name: "Albert's Grandpa", // Optional
+			dad: {
+				name: "Albert's Great Grandpa", // Errors of this doesnt exist
+				dad: {
+					name: "Albert's Great Great Grandpa",
+				},
+			},
+		},
+	},
+};
