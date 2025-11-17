@@ -14,3 +14,4 @@ comments for learning are in the files themselves
 - `applyStringAction.ts` -- Practice with extend conditionals
 - `prettify.ts` -- Prettify types 
 - `stringAutoComplete.ts` -- Atuo complete string intersection
+- `deepPartialExcept.ts` - Nested partial, except
