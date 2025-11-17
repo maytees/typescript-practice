@@ -15,7 +15,8 @@ type CapitalizeKeys<T> = {
 	[P in keyof T as Capitalize<string & P>]: T[P];
 };
 
-// 
+// Recursive, says if the T[P] is of type object, capitalizenestedkeys removing
+// undefined and null
 type CapitalizeKeysNested<T> = {
 	[P in keyof T as Capitalize<string & P>]: NonNullable<T[P]> extends object
 		? CapitalizeKeysNested<NonNullable<T[P]>>
